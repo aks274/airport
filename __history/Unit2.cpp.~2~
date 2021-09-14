@@ -1,0 +1,382 @@
+// ---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#include "Unit1.h"
+#include "Unit2.h"
+// ---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm2 *Form2;
+
+// ---------------------------------------------------------------------------
+__fastcall TForm2::TForm2(TComponent* Owner) : TForm(Owner) {
+}
+
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::ButtonPgBackClick(TObject *Sender) {
+	Form1->Show();
+    Form2->Hide();
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TForm2::RadioGroup3Click(TObject *Sender) {
+	ListBox3->Items->Clear();
+	iCur = -1;
+	int a = 0;
+	switch (RadioGroup3->ItemIndex) {
+	case 0: {
+			for (int i = 0; i < iMax; i++) {
+				if (strstr(crew[i].company,
+					AnsiString(EditSearchStr->Text).c_str()) != FALSE) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox3->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+
+	case 1: {
+			for (int i = 0; i < iMax; i++) {
+				if (strstr(crew[i].airbus,
+					AnsiString(EditSearchStr->Text).c_str()) != FALSE) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox3->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+	case 2: {
+			for (int i = 0; i < iMax; i++) {
+				if (strstr(crew[i].country,
+					AnsiString(EditSearchStr->Text).c_str()) != FALSE) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox3->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+	case 3: {
+			for (int i = 0; i < iMax; i++) {
+				if (strstr(crew[i].city,
+					AnsiString(EditSearchStr->Text).c_str()) != FALSE) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox3->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+	case 4: {
+			try {
+				for (int i = 0; i < iMax; i++) {
+					if (strstr(	AnsiString(crew[i].cost).c_str(),
+						AnsiString(EditSearchStr->Text).c_str()) != FALSE) {
+						iCur++;
+						Form1->ShowRecord();
+						ListBox3->Items->Insert(a,
+							Form1->EditCompany->Text + " " +
+							Form1->EditAirbus->Text + " " +
+							Form1->EditCountry->Text + " " +
+							Form1->EditCity->Text + " " +
+							Form1->EditCost->Text);
+						a++;
+					}
+					else {
+						iCur++;
+						Form1->ShowRecord();
+					}
+
+				}
+			}
+			catch (...) {
+				ShowMessage("¬ведите число!");
+			}
+			break;
+		}
+	}
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::RadioGroup1Click(TObject *Sender) {
+	ListBox1->Items->Clear();
+	iCur = -1;
+	int a = 0;
+	switch (RadioGroup1->ItemIndex) {
+	case 0: {
+			for (int i = 0; i < iMax; i++) {
+				if (crew[i].company == EditFilter->Text) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox1->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+
+	case 1: {
+			for (int i = 0; i < iMax; i++) {
+				if (crew[i].airbus == EditFilter->Text) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox1->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+	case 2: {
+			for (int i = 0; i < iMax; i++) {
+				if (crew[i].country == EditFilter->Text) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox1->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+	case 3: {
+			for (int i = 0; i < iMax; i++) {
+				if (crew[i].city == EditFilter->Text) {
+					iCur++;
+					Form1->ShowRecord();
+					ListBox1->Items->Insert(a, Form1->EditCompany->Text + " " +
+						Form1->EditAirbus->Text + " " +
+						Form1->EditCountry->Text + " " + Form1->EditCity->Text +
+						" " + Form1->EditCost->Text);
+					a++;
+				}
+				else {
+					iCur++;
+					Form1->ShowRecord();
+				}
+			}
+			break;
+		}
+	case 4: {
+			try {
+				for (int i = 0; i < iMax; i++) {
+					switch (RadioGroup2->ItemIndex) {
+					case 0: {
+							if (crew[i].cost < EditFilter->Text) {
+								iCur++;
+								Form1->ShowRecord();
+								ListBox1->Items->Insert(a,
+									Form1->EditCompany->Text + " " +
+									Form1->EditAirbus->Text + " " +
+									Form1->EditCountry->Text + " " +
+									Form1->EditCity->Text + " " +
+									Form1->EditCost->Text);
+								a++;
+							}
+							else {
+								iCur++;
+								Form1->ShowRecord();
+							}
+							break;
+						}
+					case 1: {
+							if (crew[i].cost > EditFilter->Text) {
+								iCur++;
+								Form1->ShowRecord();
+								ListBox1->Items->Insert(a,
+									Form1->EditCompany->Text + " " +
+									Form1->EditAirbus->Text + " " +
+									Form1->EditCountry->Text + " " +
+									Form1->EditCity->Text + " " +
+									Form1->EditCost->Text);
+								a++;
+							}
+							else {
+								iCur++;
+								Form1->ShowRecord();
+							}
+							break;
+						}
+					}
+				}
+				break;
+			}
+			catch (...) {
+				ShowMessage("¬ведите число!");
+			}
+		}
+
+	}
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::OpenAs1Click(TObject *Sender) {
+	OpenDialog1->Execute();
+
+	FILE *f = fopen(AnsiString(OpenDialog1->FileName).c_str(), "rb");
+	if (f == 0) {
+		ShowMessage("ќшибка файла!");
+		return;
+	}
+
+	crew.clear();
+
+	for (int i = 0; i < crew.max_size(); i++) {
+		staff s;
+		fread(&s, sizeof(staff), 1, f);
+		if (feof(f))
+			break;
+		crew.push_back(s);
+	}
+	fclose(f);
+	iMax = crew.size();
+	iCur = 0;
+	Form1->ShowRecord();
+	ShowMessage("‘айл успешно открыт! (см. стр. 1)");
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::SaveAs1Click(TObject *Sender) {
+	SaveDialog1->Execute();
+	FILE *f = fopen(AnsiString(SaveDialog1->FileName).c_str(), "wb");
+	if (f)
+		fwrite(&crew[0], sizeof(staff), iMax, f);
+	else
+		ShowMessage("ќшибка файла");
+	fclose(f);
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Exit1Click(TObject *Sender) {
+	Form1->Close();
+	Form2->Close();
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Font1Click(TObject *Sender) {
+	FontDialog1->Execute();
+	Form2->Font = FontDialog1->Font;
+	Bold1->Checked = False;
+	Italic1->Checked = False;
+	Underline1->Checked = False;
+	StrikeOut1->Checked = False;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Bold1Click(TObject *Sender) {
+	if (Bold1->Checked) {
+		Form2->Font->Style = Form2->Font->Style << fsBold;
+	}
+	else
+		Form2->Font->Style = Form2->Font->Style >> fsBold;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Italic1Click(TObject *Sender) {
+	if (Italic1->Checked) {
+		Form2->Font->Style = Form2->Font->Style << fsItalic;
+	}
+	else
+		Form2->Font->Style = Form2->Font->Style >> fsItalic;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Underline1Click(TObject *Sender) {
+	if (Underline1->Checked) {
+		Form2->Font->Style = Form2->Font->Style << fsUnderline;
+	}
+	else
+		Form2->Font->Style = Form2->Font->Style >> fsUnderline;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::StrikeOut1Click(TObject *Sender) {
+	if (StrikeOut1->Checked) {
+		Form2->Font->Style = Form2->Font->Style << fsStrikeOut;
+	}
+	else
+		Form2->Font->Style = Form2->Font->Style >> fsStrikeOut;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Color1Click(TObject *Sender) {
+	ColorDialog1->Execute();
+	Form2->Color = ColorDialog1->Color;
+	Black1->Checked = False;
+	Blue1->Checked = False;
+	Default1->Checked = False;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Black1Click(TObject *Sender) {
+	if (Black1->Checked)
+		Form2->Color = clBlack;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Blue1Click(TObject *Sender) {
+	if (Blue1->Checked)
+		Form2->Color = clSkyBlue;
+}
+// ---------------------------------------------------------------------------
+
+void __fastcall TForm2::Default1Click(TObject *Sender) {
+	if (Default1->Checked)
+		Form1->Color = clBtnFace;
+}
+// ---------------------------------------------------------------------------
